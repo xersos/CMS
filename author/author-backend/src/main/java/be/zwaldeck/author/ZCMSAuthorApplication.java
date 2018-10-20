@@ -12,6 +12,10 @@ import java.util.concurrent.Executor;
 @SpringBootApplication
 public class ZCMSAuthorApplication {
 
+    public static final String[] PUBLIC_MEDIA_ROUTES = {
+
+    };
+
     public static void main(String[] args) {
         SpringApplication.run(ZCMSAuthorApplication.class, args);
     }
