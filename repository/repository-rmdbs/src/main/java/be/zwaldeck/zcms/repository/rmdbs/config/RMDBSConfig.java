@@ -41,7 +41,7 @@ public class RMDBSConfig {
 
     @Bean
     @Primary
-    public LocalContainerEntityManagerFactoryBean emf() {
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         var emf = new LocalContainerEntityManagerFactoryBean();
         emf.setDataSource(dataSource());
         emf.setPackagesToScan(getEmfPackagesToScan(datasourceConfig.getPackagesToScan()));
