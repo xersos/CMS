@@ -1,0 +1,20 @@
+<zcms-header
+  [fixed]="true"
+  [navbarBrandFull]="{src: 'assets/img/brand/logo.svg', width: 89, height: 25, alt: 'CoreUI Logo'}"
+  [navbarBrandMinimized]="{src: 'assets/img/brand/sygnet.svg', width: 30, height: 30, alt: 'CoreUI Logo'}"
+  [sidebarToggler]="'lg'"
+  [asideMenuToggler]="'lg'">
+</zcms-header>
+
+<div class="app-body">
+  <zcms-left-sidebar></zcms-left-sidebar>
+  <main class="main">
+    <zcms-breadcrumb [breadcrumbs]="breadCumbs" [addUrl]="addUrl" [addText]="addText"></zcms-breadcrumb>
+    <div class="container-fluid">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+  <zcms-right-sidebar [fixed]="true" [display]="false"></zcms-right-sidebar>
+</div>
+
+<zcms-footer [fixed]="false"></zcms-footer>

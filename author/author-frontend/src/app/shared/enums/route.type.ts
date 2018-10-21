@@ -1,0 +1,11 @@
+export enum RouteType {
+  DASHBOARD,
+
+  SITES,
+  SITES_ADD,
+  SITES_UPDATE,
+
+  PAGES,
+  PAGES_ADD,
+  PAGES_UPDATE,
+}

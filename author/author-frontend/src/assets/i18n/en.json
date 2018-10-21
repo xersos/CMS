@@ -1,0 +1,66 @@
+{
+  "BREADCRUMBS": {
+    "dashboard": "Dashboard",
+    "sites": "Sites",
+    "sites.add": "Create Site",
+    "sites.update": "Update Site"
+  },
+  "COMMON": {
+    "ERRORS": {
+      "something.wrong": "There went something wrong."
+    }
+  },
+  "FORM": {
+    "FIELD": {
+      "username": "Username",
+      "password": "Password",
+      "name": "Name",
+      "path": "Path"
+    },
+    "ERROR": {
+      "required": "This field is required",
+      "minlenght": "This field needs to be al least {{ minlength }} characters.",
+      "maxlength": "This field can only be {{ maxlength }} characters long.",
+      "pattern": "This field can only contail these characters: {{ pattern }}"
+    }
+  },
+  "SERVICE": {
+    "ERRORS": {
+      "AUTH": {
+        "invalid.credentials": "These credentials seem to be invalid!"
+      },
+      "SITE": {
+        "name.not-unique": "There is already a site with this name",
+        "path.not-unique": "There is already a site with this path"
+      }
+    }
+  },
+  "COMPONENT": {
+    "LOGIN": {
+      "title": "Login",
+      "subtitle": "Sign in to your account",
+      "submit.btn": "Login"
+    },
+    "SITES":  {
+      "title": "Sites",
+      "add.tooltip": "Add site",
+      "name": "Name",
+      "path": "Path",
+      "created": "Created",
+      "updated": "Updatead",
+      "actions": "Actions",
+      "ADD": {
+        "title": "Add site",
+        "submit.btn": "Add",
+        "cancel.btn": "Cancel",
+        "success": "Successfully added the site"
+      },
+      "UPDATE": {
+        "title": "Update site",
+        "submit.btn": "Update",
+        "cancel.btn": "Cancel",
+        "success": "Successfully update the site"
+      }
+    }
+  }
+}

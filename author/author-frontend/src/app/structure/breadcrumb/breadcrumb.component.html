@@ -1,0 +1,15 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Z-CMS</li>
+  <li class="breadcrumb-item" [ngClass]="{active: last}" *ngFor="let breadCrumb of breadCrumb; let last = last">
+    <span *ngIf="!breadCrumb.clickable || last">{{ breadCrumb.name | translate}}</span>
+    <a *ngIf="breadCrumb.clickable && !last" [routerLink]="breadCrumb.uri">{{ breadCrumb.name | translate}}</a>
+  </li>
+
+  <li class="breadcrumb-menu d-md-down-none" *ngIf="addUrl && addText">
+    <div class="btn-group" role="group" aria-label="Button group">
+      <a class="btn" [routerLink]="addUrl">
+        <i class="icon-plus"></i> &nbsp; {{addText | translate}}
+      </a>
+    </div>
+  </li>
+</ol>
