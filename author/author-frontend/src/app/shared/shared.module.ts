@@ -6,6 +6,7 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {HttpLoaderFactory} from './utils/functions';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {JwtModule} from '@auth0/angular-jwt';
+import {AlertModule} from 'ngx-bootstrap';
 
 @NgModule({
   imports: [
@@ -28,13 +29,18 @@ import {JwtModule} from '@auth0/angular-jwt';
       }
     }),
 
+    // Common bootstrap modules
+    AlertModule.forRoot(),
+
   ],
   declarations: [],
   exports: [
     CommonModule,
     ReactiveFormsModule,
     RouterModule,
-    TranslateModule
+    TranslateModule,
+
+    AlertModule
   ]
 })
 export class SharedModule { }

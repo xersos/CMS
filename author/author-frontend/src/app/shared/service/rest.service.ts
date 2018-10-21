@@ -78,7 +78,7 @@ export class RestService {
 
     return new HttpHeaders()
       .set('Authorization', 'Basic ' + authString)
-      .set('Content-Type', 'application/x-www-from-urlencoded');
+      .set('Content-Type', 'application/x-www-form-urlencoded');
   }
 
   private static setAuthorizationHeader(token: string): HttpHeaders {

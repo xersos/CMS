@@ -5,7 +5,7 @@ import {catchError} from 'rxjs/operators';
 import {EmitterService} from '../service/emitterService';
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n', '.json');
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
 export function catchSomethingWrong<T, R>(errorID: string, returnValue: any): OperatorFunction<T, R> {
