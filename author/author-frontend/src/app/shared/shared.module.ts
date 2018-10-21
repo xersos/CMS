@@ -5,6 +5,7 @@ import {RouterModule} from '@angular/router';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {HttpLoaderFactory} from './utils/functions';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {JwtModule} from '@auth0/angular-jwt';
 
 @NgModule({
   imports: [
@@ -12,6 +13,12 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
     ReactiveFormsModule,
     RouterModule,
     HttpClientModule,
+
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => 'no-token'
+      }
+    }),
 
     TranslateModule.forRoot({
       loader: {

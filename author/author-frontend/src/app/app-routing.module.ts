@@ -7,6 +7,7 @@ import {EmptyLayoutComponent} from './layout/empty-layout/empty-layout.component
 import {LoginComponent} from './pages/login/login.component';
 import {NotFoundComponent} from './pages/not-found/not-found.component';
 import {NgModule} from '@angular/core';
+import {AuthGuardService} from './shared/service/auth-guard.service';
 
 const routes: Routes = [
   // Main layout routes
@@ -18,7 +19,7 @@ const routes: Routes = [
       {
         path: 'dashboard',
         component: DashboardComponent,
-        // canActivate: [AuthGuardService],
+        canActivate: [AuthGuardService],
         data: { breadCrumbs: BreadCrumbConfig.getBreadCrumbConfig(RouteType.DASHBOARD)}
       }
     ]
