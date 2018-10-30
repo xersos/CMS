@@ -7,6 +7,7 @@ import {HttpLoaderFactory} from './utils/functions';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {JwtModule} from '@auth0/angular-jwt';
 import {AlertModule} from 'ngx-bootstrap';
+import { PaginationComponent } from './comonent/pagination/pagination.component';
 
 @NgModule({
   imports: [
@@ -33,14 +34,16 @@ import {AlertModule} from 'ngx-bootstrap';
     AlertModule.forRoot(),
 
   ],
-  declarations: [],
+  declarations: [PaginationComponent],
   exports: [
     CommonModule,
     ReactiveFormsModule,
     RouterModule,
     TranslateModule,
 
-    AlertModule
+    AlertModule,
+
+    PaginationComponent
   ]
 })
 export class SharedModule { }

@@ -1,0 +1,61 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-header">
+        {{ 'COMPONENT.SITES.title' | translate }}
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-12">
+
+            <!-- TODO add flash messages -->
+
+            <alert type="danger" [dismissible]="true" *ngIf="error">{{error | translate}}</alert>
+            <alert type="success" [dismissible]="true" *ngIf="success">{{success | translate}}</alert>
+
+            <table class="table table-responsive-sm table-striped table-bordered" *ngIf="collection">
+              <thead>
+              <tr>
+                <th>{{ 'COMPONENT.SITES.name' | translate}}</th>
+                <th>{{ 'COMPONENT.SITES.path' | translate}}</th>
+                <th>{{ 'COMPONENT.SITES.created' | translate}}</th>
+                <th>{{ 'COMPONENT.SITES.updated' | translate}}</th>
+                <th>{{ 'COMPONENT.SITES.actions' | translate}}</th>
+              </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let site of collection.items">
+                  <td>{{site.name}}</td>
+                  <td>{{site.path}}</td>
+                  <td>{{site.createdAt | date:'dd-MM-yyyy HH:mm'}}</td>
+                  <td>{{site.updatedAt | date:'dd-MM-yyyy HH:mm'}}</td>
+                  <td class="text-center">
+                    <a class="btn btn-warning" [routerLink]="['/sites/update', site.id]">
+                      <i class="fa fa-pencil"></i>
+                    </a>
+                    &nbsp;
+                    <a class="btn btn-danger">
+                      <i class="fa fa-trash"></i>
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="row" *ngIf="collection">
+          <div class="col-sm-12">
+            <zcms-pagination
+              [class]="'justify-content-end'"
+              [totalPages]="collection.totalPages"
+              [currentPage]="currentPage"
+              [pages]="collection.pages"
+              (pageChange)="setPage($event)"
+            ></zcms-pagination>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

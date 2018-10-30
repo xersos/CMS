@@ -82,6 +82,6 @@ export class RestService {
   }
 
   private static setAuthorizationHeader(token: string): HttpHeaders {
-    return new HttpHeaders().set('Authorizaion', 'Bearer ' + token);
+    return new HttpHeaders().set('Authorization', 'Bearer ' + token);
   }
 }

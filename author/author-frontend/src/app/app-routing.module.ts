@@ -8,6 +8,7 @@ import {LoginComponent} from './pages/login/login.component';
 import {NotFoundComponent} from './pages/not-found/not-found.component';
 import {NgModule} from '@angular/core';
 import {AuthGuardService} from './shared/service/auth-guard.service';
+import {SitesComponent} from './content/sites/sites.component';
 
 const routes: Routes = [
   // Main layout routes
@@ -21,6 +22,12 @@ const routes: Routes = [
         component: DashboardComponent,
         canActivate: [AuthGuardService],
         data: { breadCrumbs: BreadCrumbConfig.getBreadCrumbConfig(RouteType.DASHBOARD)}
+      },
+      {
+        path: 'sites',
+        component: SitesComponent,
+        canActivate: [AuthGuardService],
+        data: { breadCrumbs: BreadCrumbConfig.getBreadCrumbConfig(RouteType.SITES), addUrl: '/sites/add', addText: 'BREADCRUMBS.sites.add'}
       }
     ]
   },

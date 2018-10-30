@@ -38,7 +38,7 @@ public class ApplicationStartupListener implements ApplicationListener<Applicati
     }
 
     private boolean askForStubs() {
-        System.out.println("Do you want to load the stubs (Y)es/(N)o: ");
+        System.out.print("Do you want to load the stubs (Y)es/(N)o: ");
         var scanner = new Scanner(System.in);
         var answer = scanner.next().trim();
         return answer.equalsIgnoreCase("yes") ||
