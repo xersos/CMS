@@ -10,9 +10,9 @@ public interface SiteService {
 
     Site create(Site site);
 
-    Site update(Site site);
+    Site update(Site oldSite, Site newSite);
 
-    Optional<Site> getById(String id);
+    Optional<Site> getSiteById(String id);
 
     Page<Site> getSites(Pageable pageable);
 

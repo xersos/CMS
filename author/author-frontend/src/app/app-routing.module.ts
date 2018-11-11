@@ -9,6 +9,7 @@ import {NotFoundComponent} from './pages/not-found/not-found.component';
 import {NgModule} from '@angular/core';
 import {AuthGuardService} from './shared/service/auth-guard.service';
 import {SitesComponent} from './content/sites/sites.component';
+import {AddUpdateSiteComponent} from './content/sites/add-update-site/add-update-site.component';
 
 const routes: Routes = [
   // Main layout routes
@@ -28,7 +29,19 @@ const routes: Routes = [
         component: SitesComponent,
         canActivate: [AuthGuardService],
         data: { breadCrumbs: BreadCrumbConfig.getBreadCrumbConfig(RouteType.SITES), addUrl: '/sites/add', addText: 'BREADCRUMBS.sites.add'}
-      }
+      },
+      {
+        path: 'sites/add',
+        component: AddUpdateSiteComponent,
+        canActivate: [AuthGuardService],
+        data: {breadCrumbs: BreadCrumbConfig.getBreadCrumbConfig(RouteType.SITES_ADD)}
+      },
+      {
+        path: 'sites/update/:id',
+        component: AddUpdateSiteComponent,
+        canActivate: [AuthGuardService],
+        data: {breadCrumbs: BreadCrumbConfig.getBreadCrumbConfig(RouteType.SITES_UPDATE)}
+      },
     ]
   },
 

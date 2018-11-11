@@ -3,7 +3,7 @@ import {BaseComponent} from '../../base.component';
 import {PaginatedCollection} from '../../shared/models/paginated.collection';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {SiteService} from '../../shared/service/site.service';
-import {takeUntil} from 'rxjs/operators';
+import {finalize, takeUntil} from 'rxjs/operators';
 import {EmitterService} from '../../shared/service/emitterService';
 
 @Component({
@@ -44,14 +44,14 @@ export class SitesComponent extends BaseComponent implements OnInit {
     this.error = null;
     this.success = null;
     this.siteService.getSites(page)
-      .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe((collection: PaginatedCollection) => {
+      .pipe(
+        takeUntil(this.ngUnsubscribe),
+      ).subscribe((collection: PaginatedCollection) => {
         if (collection != null) {
           this.currentPage = page;
           this.collection = collection;
           this.router.navigateByUrl(`/sites?page=${page}`);
         }
-
         this.doneLoading();
       });
   }

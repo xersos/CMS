@@ -1,5 +1,7 @@
 package be.zwaldeck.zcms.repository.rmdbs.service;
 
+import be.zwaldeck.zcms.repository.api.exception.RepositoryError;
+import be.zwaldeck.zcms.repository.api.exception.RepositoryException;
 import be.zwaldeck.zcms.repository.api.model.Site;
 import be.zwaldeck.zcms.repository.api.service.SiteService;
 import be.zwaldeck.zcms.repository.rmdbs.converter.SiteConverterRMDBS;
@@ -25,16 +27,36 @@ public class SiteServiceRMDBS implements SiteService {
 
     @Override
     public Site create(Site site) {
+        if (repository.findByName(site.getName()).isPresent()) {
+            throw new RepositoryException(RepositoryError.SITE_NAME_NOT_UNIQUE);
+        }
+
+        if (repository.findByPath(site.getPath()).isPresent()) {
+            throw new RepositoryException(RepositoryError.SITE_PATH_NOT_UNIQUE);
+        }
+
         return converter.fromDB(repository.saveAndFlush(converter.toDB(site, false)));
     }
 
     @Override
-    public Site update(Site site) {
-        return converter.fromDB(repository.saveAndFlush(converter.toDB(site, true)));
+    public Site update(Site oldSite, Site newSite) {
+
+        if (!oldSite.getName().equalsIgnoreCase(newSite.getName()) && repository.findByName(newSite.getName()).isPresent()) {
+            throw new RepositoryException(RepositoryError.SITE_NAME_NOT_UNIQUE);
+        }
+
+        if (!oldSite.getPath().equalsIgnoreCase(newSite.getPath()) && repository.findByPath(newSite.getPath()).isPresent()) {
+            throw new RepositoryException(RepositoryError.SITE_PATH_NOT_UNIQUE);
+        }
+
+        newSite.setId(oldSite.getId());
+        newSite.setCreatedAt(oldSite.getCreatedAt());
+
+        return converter.fromDB(repository.saveAndFlush(converter.toDB(newSite, true)));
     }
 
     @Override
-    public Optional<Site> getById(String id) {
+    public Optional<Site> getSiteById(String id) {
         return repository.findById(id).map(converter::fromDB);
     }
 
@@ -47,4 +69,5 @@ public class SiteServiceRMDBS implements SiteService {
     public void delete(Site site) {
         repository.deleteById(site.getId());
     }
+
 }

@@ -8,6 +8,7 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {JwtModule} from '@auth0/angular-jwt';
 import {AlertModule} from 'ngx-bootstrap';
 import { PaginationComponent } from './comonent/pagination/pagination.component';
+import { FlashMessageComponent } from './comonent/flash-message/flash-message.component';
 
 @NgModule({
   imports: [
@@ -34,7 +35,7 @@ import { PaginationComponent } from './comonent/pagination/pagination.component'
     AlertModule.forRoot(),
 
   ],
-  declarations: [PaginationComponent],
+  declarations: [PaginationComponent, FlashMessageComponent],
   exports: [
     CommonModule,
     ReactiveFormsModule,

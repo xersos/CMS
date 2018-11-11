@@ -1,0 +1,45 @@
+<div class="row" *ngIf="form">
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-header">
+        <span *ngIf="site === null">{{'COMPONENT.SITES.ADD.title' | translate}}</span>
+        <span *ngIf="site !== null">{{'COMPONENT.SITES.UPDATE.title' | translate}}</span>
+      </div>
+      <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+        <div class="card-body">
+          <alert type="danger" [dismissible]="true" *ngIf="error && error !== ''">{{error | translate}}</alert>
+
+          <div class="form-group">
+            <label for="name">{{'FORM.FIELD.name' | translate}}</label>
+            <input type="text" class="form-control" id="name" [ngClass]="{'is-invalid': formErrors.name}"
+                   formControlName="name" placeholder="{{'FORM.FIELD.name' | translate}}">
+            <div class="invalid-feedback" *ngIf="formErrors.name">{{formErrors.name |
+              translate:validationMessagesValues.name}}
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="path">{{'FORM.FIELD.path' | translate}}</label>
+            <input type="text" class="form-control" id="path" [ngClass]="{'is-invalid': formErrors.path}"
+                   formControlName="path" placeholder="{{'FORM.FIELD.path' | translate}}">
+            <div class="invalid-feedback" *ngIf="formErrors.path">{{formErrors.path |
+              translate:validationMessagesValues.path}}
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button type="submit" class="btn btn-success mr-2" [disabled]="!form.valid">
+            <i class="fa fa-dot-circle-o"></i>&nbsp;
+            <span *ngIf="site === null">{{'COMPONENT.SITES.ADD.submit.btn' | translate}}</span>
+            <span *ngIf="site !== null">{{'COMPONENT.SITES.UPDATE.submit.btn' | translate}}</span>
+          </button>
+          <a [routerLink]="['/sites']" class="btn btn-danger">
+            <i class="fa fa-ban"></i>&nbsp;
+            <span *ngIf="site === null">{{'COMPONENT.SITES.ADD.cancel.btn' | translate}}</span>
+            <span *ngIf="site !== null">{{'COMPONENT.SITES.UPDATE.cancel.btn' | translate}}</span>
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

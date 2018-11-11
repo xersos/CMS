@@ -26,10 +26,12 @@ export class MappingUtil {
         }
       }
     } else {
-      for (let i = 1; i < collection.totalPages; i++) {
+      for (let i = 1; i <= collection.totalPages; i++) {
         collection.pages.push(i);
       }
     }
+
+    console.log(collection, pageInfo);
 
     return collection;
   }
