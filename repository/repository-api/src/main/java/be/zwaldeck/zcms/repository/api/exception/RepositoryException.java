@@ -1,12 +1,14 @@
 package be.zwaldeck.zcms.repository.api.exception;
 
-public class RepositoryException extends Exception {
+import be.zwaldeck.zcms.core.common.error.ZCMSException;
 
-    public RepositoryException(String message) {
-        super(message);
+public class RepositoryException extends ZCMSException {
+
+    public RepositoryException(RepositoryError error) {
+        super(error);
     }
 
-    public RepositoryException(String message, Throwable cause) {
-        super(message, cause);
+    public RepositoryException(RepositoryError error, Throwable cause) {
+        super(error, cause);
     }
 }

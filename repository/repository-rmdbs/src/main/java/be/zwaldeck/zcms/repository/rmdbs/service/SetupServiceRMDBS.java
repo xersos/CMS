@@ -50,28 +50,24 @@ public class SetupServiceRMDBS implements SetupService {
     }
 
     @Override
-    public boolean isRepositorySetup() throws RepositoryException {
-        try {
-            var tablesInDb = new ArrayList<String>();
-            var resultSet = dataSource.getConnection().getMetaData().getTables(null, null, "%", null);
-            while (resultSet.next()) {
-                tablesInDb.add(resultSet.getString("TABLE_NAME"));
-            }
+    public boolean isRepositorySetup() throws SQLException {
+        var tablesInDb = new ArrayList<String>();
+        var resultSet = dataSource.getConnection().getMetaData().getTables(null, null, "%", null);
+        while (resultSet.next()) {
+            tablesInDb.add(resultSet.getString("TABLE_NAME"));
+        }
 
-            for (var table : TABLES_NEEDED) {
-                if (!tablesInDb.contains(table)) {
-                    return false;
-                }
+        for (var table : TABLES_NEEDED) {
+            if (!tablesInDb.contains(table)) {
+                return false;
             }
-        } catch (SQLException e) {
-            throw new RepositoryException("There went something wrong", e);
         }
 
         return true;
     }
 
     @Override
-    public void setupRepository() throws RepositoryException {
+    public void setupRepository() {
         var metaDataSrc = new MetadataSources(
                 new StandardServiceRegistryBuilder().applySettings(rawSettings).build()
         );
