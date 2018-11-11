@@ -8,6 +8,7 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
+import java.sql.SQLException;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -31,7 +32,7 @@ public class ApplicationStartupListener implements ApplicationListener<Applicati
             } else if (!setupService.isRepositorySetup()) {
                 setupService.setupRepository();
             }
-        } catch (RepositoryException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             System.exit(9);
         }
