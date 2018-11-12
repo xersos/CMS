@@ -5,6 +5,7 @@ import be.zwaldeck.zcms.repository.api.model.Role;
 import be.zwaldeck.zcms.repository.api.model.Site;
 import be.zwaldeck.zcms.repository.api.model.User;
 import be.zwaldeck.zcms.repository.api.service.SetupService;
+import be.zwaldeck.zcms.repository.rmdbs.domain.PageDB;
 import be.zwaldeck.zcms.repository.rmdbs.domain.SiteDB;
 import be.zwaldeck.zcms.repository.rmdbs.domain.UserDB;
 import org.hibernate.boot.MetadataSources;
@@ -74,6 +75,7 @@ public class SetupServiceRMDBS implements SetupService {
 
         metaDataSrc.addAnnotatedClass(UserDB.class);
         metaDataSrc.addAnnotatedClass(SiteDB.class);
+        metaDataSrc.addAnnotatedClass(PageDB.class);
 
 
         var schemaExport = new SchemaExport();

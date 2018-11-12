@@ -18,11 +18,13 @@ public class SiteServiceRMDBS implements SiteService {
 
     private final SiteRMDBSRepository repository;
     private final SiteConverterRMDBS converter;
+    private final PageServiceRMDBS pageService;
 
     @Autowired
-    public SiteServiceRMDBS(SiteRMDBSRepository repository, SiteConverterRMDBS converter) {
+    public SiteServiceRMDBS(SiteRMDBSRepository repository, SiteConverterRMDBS converter, PageServiceRMDBS pageService) {
         this.repository = repository;
         this.converter = converter;
+        this.pageService = pageService;
     }
 
     @Override
@@ -35,7 +37,16 @@ public class SiteServiceRMDBS implements SiteService {
             throw new RepositoryException(RepositoryError.SITE_PATH_NOT_UNIQUE);
         }
 
-        return converter.fromDB(repository.saveAndFlush(converter.toDB(site, false)));
+        site = converter.fromDB(repository.saveAndFlush(converter.toDB(site, false)));
+
+        var page = new be.zwaldeck.zcms.repository.api.model.Page();
+        page.setName("");
+        page.setTitle("Home");
+        page.setSite(site);
+
+        pageService.create(page);
+
+        return site;
     }
 
     @Override
