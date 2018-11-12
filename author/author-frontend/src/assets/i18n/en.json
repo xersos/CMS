@@ -60,6 +60,12 @@
         "submit.btn": "Update",
         "cancel.btn": "Cancel",
         "success": "Successfully update the site"
+      },
+      "DELETE": {
+        "title": "Are you sure?",
+        "body": "Are you sure you want to delete <strong>{{ siteName }}</strong>? This will also delete all the pages of this site. This can not be undone.",
+        "ok": "Yes",
+        "close": "No"
       }
     }
   }

@@ -83,4 +83,11 @@ export class SiteService {
         })
       );
   }
+
+  public deleteSite(id: string): Observable<boolean> {
+    return this.restService.delete(`/sites/${id}`, this.authService.getToken()).pipe(
+      map(res => true),
+      catchSomethingWrong('siteError', false)
+    );
+  }
 }

@@ -31,8 +31,6 @@ export class MappingUtil {
       }
     }
 
-    console.log(collection, pageInfo);
-
     return collection;
   }
 
