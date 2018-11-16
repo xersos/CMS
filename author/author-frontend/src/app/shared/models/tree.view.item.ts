@@ -3,4 +3,5 @@ export class TreeViewItem {
   public name: string;
   public children: TreeViewItem[] = [];
   public isOpen: boolean = false;
+  public isSite: boolean = false;
 }

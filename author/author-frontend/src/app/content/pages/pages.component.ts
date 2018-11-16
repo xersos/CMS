@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Site} from '../../shared/models/entity/site';
 import {TreeViewItem} from '../../shared/models/tree.view.item';
 import {BaseComponent} from '../../base.component';
+import {PageService} from '../../shared/service/page.service';
+import {takeUntil} from 'rxjs/operators';
+import {PaginatedCollection} from '../../shared/models/paginated.collection';
+import {Page} from '../../shared/models/entity/page';
 
 @Component({
   selector: 'zcms-pages',
@@ -10,11 +14,16 @@ import {BaseComponent} from '../../base.component';
 })
 export class PagesComponent extends BaseComponent implements OnInit {
 
-  private currentPage: number = 1;
+  public collection: PaginatedCollection = null;
+  public currentPage: number = 1;
+
+  public error: string = null;
+  public success: string = null;
+
   private treeItem: TreeViewItem = null;
   private site: Site = null;
 
-  constructor() {
+  constructor(private pageService: PageService) {
     super();
   }
 
@@ -31,18 +40,22 @@ export class PagesComponent extends BaseComponent implements OnInit {
   }
 
   public setPage(page: number): void {
-    // if (this.site !== null && this.treeItem !== null) {
-    //   this.loading();
-    //   this.siteService.getPagesBySiteAndParent(this.site.id, this.treeItem.id, true)
-    //     .pipe(takeUntil(this.ngUnsubscribe))
-    //     .subscribe((collection: PaginatedCollection) => {
-    //       if (collection != null) {
-    //         this.collection = collection;
-    //         this.currentPage = page;
-    //       }
-    //       this.doneLoading();
-    //     });
-    // }
+    if (this.site !== null && this.treeItem !== null) {
+      this.loading();
+      this.pageService.getPagesBySiteAndParent(this.site.id, page, this.treeItem.id, !!this.treeItem.isSite)
+        .pipe(takeUntil(this.ngUnsubscribe))
+        .subscribe((collection: PaginatedCollection) => {
+          if (collection != null) {
+            this.collection = collection;
+            this.currentPage = page;
+          }
+          this.doneLoading();
+        });
+    }
+  }
+
+  public askForDeletion(page: Page): void {
+
   }
 
 }

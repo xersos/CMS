@@ -5,4 +5,68 @@
       (onSiteSelected)="onSiteSelected($event)"
     ></zcms-pages-tree>
   </div>
+
+  <div class="col-sm-12 col-md-8 col-lg-9">
+    <div class="card">
+      <div class="card-header">
+        {{ 'COMPONENT.PAGES.title' | translate }}
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-12">
+
+            <zcms-flash-message></zcms-flash-message>
+
+            <alert type="danger" [dismissible]="true" *ngIf="error">{{error | translate}}</alert>
+            <alert type="success" [dismissible]="true" *ngIf="success">{{success | translate}}</alert>
+
+            <table class="table table-responsive-sm table-striped table-bordered" *ngIf="collection">
+              <thead>
+              <tr>
+                <th>{{ 'COMPONENT.PAGES.title.tbl' | translate}}</th>
+                <th>{{ 'COMPONENT.PAGES.name' | translate}}</th>
+                <th>{{ 'COMPONENT.PAGES.published' | translate}}</th>
+                <th>{{ 'COMPONENT.PAGES.updated' | translate}}</th>
+                <th>{{ 'COMPONENT.PAGES.actions' | translate}}</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let page of collection.items">
+                <td>{{page.title}}</td>
+                <td>{{page.name}}</td>
+                <td>
+                  <img src="/assets/img/status/offline.png" *ngIf="!page.published">
+                  <img src="/assets/img/status/online.png" *ngIf="page.published">
+                  Not published
+                </td>
+                <td>{{page.updatedAt | date:'dd-MM-yyyy HH:mm'}}</td>
+                <td class="text-center">
+                  <a class="btn btn-warning" [routerLink]="['/pages/update', page.id]">
+                    <i class="fa fa-pencil"></i>
+                  </a>
+                  &nbsp;
+                  <a class="btn btn-danger" (click)="askForSiteDeletion(page)">
+                    <i class="fa fa-trash"></i>
+                  </a>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="row" *ngIf="collection">
+          <div class="col-sm-12">
+            <zcms-pagination
+              [class]="'justify-content-end'"
+              [totalPages]="collection.totalPages"
+              [currentPage]="currentPage"
+              [pages]="collection.pages"
+              (pageChange)="setPage($event)"
+            ></zcms-pagination>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

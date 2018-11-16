@@ -8,7 +8,7 @@
         <div class="row">
           <div class="col-sm-12">
 
-            <!-- TODO add flash messages -->
+            <zcms-flash-message></zcms-flash-message>
 
             <alert type="danger" [dismissible]="true" *ngIf="error">{{error | translate}}</alert>
             <alert type="success" [dismissible]="true" *ngIf="success">{{success | translate}}</alert>

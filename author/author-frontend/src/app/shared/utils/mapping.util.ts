@@ -1,5 +1,6 @@
 import {Site} from '../models/entity/site';
 import {PaginatedCollection} from '../models/paginated.collection';
+import {Page} from '../models/entity/page';
 
 export class MappingUtil {
 
@@ -44,5 +45,19 @@ export class MappingUtil {
     site.updatedAt = new Date(item.updatedAt);
 
     return site;
+  }
+
+  public static mapItemToPage(item: any): Page {
+    const page = new Page();
+
+    page.id = item.id;
+    page.name = item.name;
+    page.title = item.title;
+    page.description = item.description;
+    page.published = item.published;
+    page.createdAt = new Date(item.createdAt);
+    page.updatedAt = new Date(item.updatedAt);
+
+    return page;
   }
 }

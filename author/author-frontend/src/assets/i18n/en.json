@@ -3,7 +3,10 @@
     "dashboard": "Dashboard",
     "sites": "Sites",
     "sites.add": "Create Site",
-    "sites.update": "Update Site"
+    "sites.update": "Update Site",
+    "pages": "Pages",
+    "pages.add": "Create Page",
+    "pages.update": "Update Page"
   },
   "COMMON": {
     "ERRORS": {
@@ -43,11 +46,10 @@
     },
     "SITES":  {
       "title": "Sites",
-      "add.tooltip": "Add site",
       "name": "Name",
       "path": "Path",
       "created": "Created",
-      "updated": "Updatead",
+      "updated": "Updated",
       "actions": "Actions",
       "ADD": {
         "title": "Add site",
@@ -67,6 +69,14 @@
         "ok": "Yes",
         "close": "No"
       }
+    },
+    "PAGES": {
+      "title": "Pages",
+      "title.tbl": "Title",
+      "name": "Name",
+      "published": "Published",
+      "updated": "Last updated",
+      "actions": "Actions"
     }
   }
 }

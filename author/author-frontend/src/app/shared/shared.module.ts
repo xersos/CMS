@@ -53,6 +53,7 @@ import { ConfirmModalComponent } from './modal/confirm-modal/confirm-modal.compo
     ModalModule,
 
     PaginationComponent,
+    FlashMessageComponent,
 
     ConfirmModalComponent
   ],

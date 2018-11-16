@@ -99,13 +99,12 @@ export class SiteService {
   public getPageTree(siteId: string): Observable<TreeViewItem> {
     return this.restService.get(`/sites/${siteId}/page-tree`, this.authService.getToken()).pipe(
       map((res: any) => {
-        return res;
+        const treeItem = <TreeViewItem> res;
+        treeItem.isSite = true;
+        return treeItem;
       }),
       catchSomethingWrong('siteError', [])
     );
   }
 
-  // public getPagesBySiteAndParent(siteId: string, parentPageId: string, includeParent: boolean): Observable<PaginatedCollection> {
-  //
-  // }
 }
