@@ -8,6 +8,7 @@ import be.zwaldeck.zcms.core.common.rest.pagination.PaginatedResponse;
 import be.zwaldeck.zcms.repository.api.model.Site;
 import be.zwaldeck.zcms.repository.api.service.SiteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,7 +39,13 @@ public class SiteController {
 
     @Secured("ROLE_AUTHOR")
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public ResponseEntity<PaginatedResponse<SiteResponse>> getSites(Pageable pageable) {
+    public ResponseEntity<PaginatedResponse<SiteResponse>> getSites(
+            Pageable pageable, @RequestParam(name = "paginated", value = "true", required = false) boolean paginated) {
+
+        if (!paginated) {
+            pageable = PageRequest.of(1, Integer.MAX_VALUE, pageable.getSort());
+        }
+
         var sites = jsonConverter.toJson(siteService.getSites(pageable));
         return new ResponseEntity<>(PaginatedResponse.createResponse(sites, "/sites"), HttpStatus.OK);
     }

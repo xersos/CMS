@@ -1,0 +1,24 @@
+<div class="card">
+  <div class="card-header">
+    Page tree
+  </div>
+  <div class="card-body tree-view-card">
+    <ul class="tree" *ngFor="let site of sites">
+      <li class="branch">
+        <a href="#" (click)="toggleTreeView(site)" class="treeview-icon">
+          <i class="fa fa-folder-o" *ngIf="!openTreeview || openTreeview !== site.id"></i>
+          <i class="fa fa-folder-open-o" *ngIf="openTreeview && openTreeview === site.id"></i>
+        </a>
+        <a href="#" (click)="siteSelected(site)">{{site.name}}</a>
+        <ng-container *ngIf="treeViews.get(site.id) && openTreeview && openTreeview === site.id">
+          <ul>
+            <li zcms-pages-tree-branch
+                *ngFor="let branch of getRootBranches(site.id)"
+                [branchItem]="branch" (onSelectedItem)="onItemSelect($event)">
+            </li>
+          </ul>
+        </ng-container>
+      </li>
+    </ul>
+  </div>
+</div>

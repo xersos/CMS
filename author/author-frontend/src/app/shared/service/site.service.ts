@@ -9,6 +9,7 @@ import {MappingUtil} from '../utils/mapping.util';
 import {catchSomethingWrong} from '../utils/functions';
 import {EmitterService} from './emitterService';
 import {HttpErrorResponse} from '@angular/common/http';
+import {TreeViewItem} from '../models/tree.view.item';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +19,8 @@ export class SiteService {
   constructor(private restService: RestService, private authService: AuthenticationService) {
   }
 
-  public getSites(page: number): Observable<PaginatedCollection> {
-    return this.restService.get(`/sites?page=${page}`, this.authService.getToken()).pipe(
+  public getSites(page: number, paginated: boolean = true): Observable<PaginatedCollection> {
+    return this.restService.get(`/sites?page=${page}&paginated=${paginated}`, this.authService.getToken()).pipe(
       map(res => {
         const sites: Site[] = [];
         for (const item of res.items) {
@@ -90,4 +91,17 @@ export class SiteService {
       catchSomethingWrong('siteError', false)
     );
   }
+
+  public getPageTree(siteId: string): Observable<TreeViewItem> {
+    return this.restService.get(`/sites/${siteId}/page-tree`, this.authService.getToken()).pipe(
+      map((res: any) => {
+        return res;
+      }),
+      catchSomethingWrong('siteError', [])
+    );
+  }
+
+  // public getPagesBySiteAndParent(siteId: string, parentPageId: string, includeParent: boolean): Observable<PaginatedCollection> {
+  //
+  // }
 }

@@ -1,0 +1,11 @@
+<a href="#" *ngIf="branchItem.children.length > 0" (click)="toggle()" class="treeview-icon">
+  <i class="fa fa-folder-o" *ngIf="!branchItem.isOpen"></i>
+  <i class="fa fa-folder-open-o" *ngIf="branchItem.isOpen"></i>
+</a>
+<a href="" (click)="select(branchItem)">{{branchItem.name}}</a>
+<ng-container *ngIf="branchItem.isOpen">
+  <ul>
+    <li zcms-pages-tree-branch *ngFor="let child of branchItem.children"
+        [branchItem]="child" (onSelectedItem)="onSelect($event)"></li>
+  </ul>
+</ng-container>
