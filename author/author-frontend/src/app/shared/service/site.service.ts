@@ -24,7 +24,7 @@ export class SiteService {
       pageSize = Number.MAX_SAFE_INTEGER;
     }
 
-    return this.restService.get(`/sites?page=${page}&items=${pageSize}`, this.authService.getToken()).pipe(
+    return this.restService.get(`/sites?page=${page}&size=${pageSize}`, this.authService.getToken()).pipe(
       map(res => {
         const sites: Site[] = [];
         for (const item of res.items) {
