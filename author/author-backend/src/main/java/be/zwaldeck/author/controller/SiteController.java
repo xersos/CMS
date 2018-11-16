@@ -39,13 +39,7 @@ public class SiteController {
 
     @Secured("ROLE_AUTHOR")
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public ResponseEntity<PaginatedResponse<SiteResponse>> getSites(
-            Pageable pageable, @RequestParam(name = "paginated", value = "true", required = false) boolean paginated) {
-
-        if (!paginated) {
-            pageable = PageRequest.of(1, Integer.MAX_VALUE, pageable.getSort());
-        }
-
+    public ResponseEntity<PaginatedResponse<SiteResponse>> getSites(Pageable pageable) {
         var sites = jsonConverter.toJson(siteService.getSites(pageable));
         return new ResponseEntity<>(PaginatedResponse.createResponse(sites, "/sites"), HttpStatus.OK);
     }

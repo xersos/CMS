@@ -26,7 +26,7 @@ export class PagesTreeComponent extends BaseComponent implements OnInit {
 
   ngOnInit() {
     this.loading();
-    this.siteService.getSites(1, false).pipe(takeUntil(this.ngUnsubscribe))
+    this.siteService.getSites(1, -1).pipe(takeUntil(this.ngUnsubscribe))
       .subscribe((collection: PaginatedCollection) => {
         if (collection != null) {
           this.sites = collection.items;

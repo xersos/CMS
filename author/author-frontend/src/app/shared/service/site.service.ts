@@ -19,8 +19,12 @@ export class SiteService {
   constructor(private restService: RestService, private authService: AuthenticationService) {
   }
 
-  public getSites(page: number, paginated: boolean = true): Observable<PaginatedCollection> {
-    return this.restService.get(`/sites?page=${page}&paginated=${paginated}`, this.authService.getToken()).pipe(
+  public getSites(page: number, pageSize: number = 50): Observable<PaginatedCollection> {
+    if (pageSize <= 0) {
+      pageSize = Number.MAX_SAFE_INTEGER;
+    }
+
+    return this.restService.get(`/sites?page=${page}&items=${pageSize}`, this.authService.getToken()).pipe(
       map(res => {
         const sites: Site[] = [];
         for (const item of res.items) {

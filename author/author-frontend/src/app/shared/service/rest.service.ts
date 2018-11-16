@@ -39,7 +39,7 @@ export class RestService {
     return this.http.post(this.baseUrl + '/oauth/token', body.toString(), {headers});
   }
 
-  public get(endpoint: string, token: string): Observable<any> {
+  public get(endpoint: string, token: string, paginated: boolean = true): Observable<any> {
     const headers = RestService.setAuthorizationHeader(token)
       .set('Content-Type', 'application/json');
 
