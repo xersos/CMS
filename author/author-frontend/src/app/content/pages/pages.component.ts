@@ -54,7 +54,7 @@ export class PagesComponent extends BaseComponent implements OnInit {
     }
   }
 
-  public askForDeletion(page: Page): void {
+  public askForPageDeletion(page: Page): void {
 
   }
 

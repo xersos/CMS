@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {FlashMessageService} from '../../service/flash-message.service';
+import {FlashMessage} from '../../models/flash.message';
 
 @Component({
   selector: 'zcms-flash-message',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FlashMessageComponent implements OnInit {
 
-  constructor() { }
+  public message: FlashMessage = null;
+
+  constructor(private flashMessageService: FlashMessageService) { }
 
   ngOnInit() {
+    this.message = this.flashMessageService.getMessage();
   }
 
 }
