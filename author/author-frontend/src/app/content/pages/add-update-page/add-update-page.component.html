@@ -1,0 +1,60 @@
+<div class="row" *ngIf="form">
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-header">
+        <span *ngIf="page === null">{{'COMPONENT.PAGES.ADD.title' | translate}}</span>
+        <span *ngIf="page !== null">{{'COMPONENT.PAGES.UPDATE.title' | translate}}</span>
+      </div>
+      <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+        <div class="card-body">
+          <alert type="danger" [dismissible]="true" *ngIf="error && error !== ''">{{error | translate}}</alert>
+
+          <div class="form-group">
+            <label>{{'FORM.FIELD.site' | translate}}</label>
+            <ngx-select [items]="siteOptions" [formControlName]="'site'" [allowClear]="true"
+                        (select)="onSiteSelected($event)" (remove)="onSiteRemoved()"
+                        placeholder="{{'FORM.PLACEHOLDER.site' | translate}}"></ngx-select>
+            <div class="text-danger" *ngIf="formErrors.site">{{formErrors.site |translate}}</div>
+          </div>
+
+          <div class="form-group">
+            <label>{{'FORM.FIELD.parent' | translate}}</label>
+            <ngx-select [items]="pageOptions" [formControlName]="'parent'" [allowClear]="true"
+                        placeholder="{{'FORM.PLACEHOLDER.parent' | translate}}"></ngx-select>
+            <div class="text-danger" *ngIf="formErrors.parent">{{formErrors.parent |translate}}</div>
+          </div>
+
+          <div class="form-group">
+            <label for="name">{{'FORM.FIELD.name' | translate}}</label>
+            <input type="text" class="form-control" id="name" [ngClass]="{'is-invalid': formErrors.name}"
+                   formControlName="name" placeholder="{{'FORM.FIELD.name' | translate}}">
+            <div class="invalid-feedback" *ngIf="formErrors.name">{{formErrors.name |
+              translate:validationMessagesValues.name}}
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="title">{{'FORM.FIELD.title' | translate}}</label>
+            <input type="text" class="form-control" id="title" [ngClass]="{'is-invalid': formErrors.title}"
+                   formControlName="title" placeholder="{{'FORM.FIELD.title' | translate}}">
+            <div class="invalid-feedback" *ngIf="formErrors.title">{{formErrors.title |
+              translate:validationMessagesValues.title}}
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button type="submit" class="btn btn-success mr-2" [disabled]="!form.valid">
+            <i class="fa fa-dot-circle-o"></i>&nbsp;
+            <span *ngIf="page === null">{{'COMPONENT.PAGES.ADD.submit.btn' | translate}}</span>
+            <span *ngIf="page !== null">{{'COMPONENT.PAGES.UPDATE.submit.btn' | translate}}</span>
+          </button>
+          <a [routerLink]="['/sites']" class="btn btn-danger">
+            <i class="fa fa-ban"></i>&nbsp;
+            <span *ngIf="page === null">{{'COMPONENT.PAGES.ADD.cancel.btn' | translate}}</span>
+            <span *ngIf="page !== null">{{'COMPONENT.PAGES.UPDATE.cancel.btn' | translate}}</span>
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

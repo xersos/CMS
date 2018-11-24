@@ -29,9 +29,6 @@ public class PageDB {
     @Column(name = "title", nullable = false)
     private String title;
 
-    @Column(name = "description", nullable = true, length = 500)
-    private String description;
-
     @Column(name = "published", nullable = false)
     private boolean published = false;
 

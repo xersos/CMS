@@ -41,6 +41,10 @@
                 </td>
                 <td>{{page.updatedAt | date:'dd-MM-yyyy HH:mm'}}</td>
                 <td class="text-center">
+                  <a class="btn btn-success">
+                    <i class="fa fa-sitemap"></i>
+                  </a>
+                  &nbsp;
                   <a class="btn btn-warning" [routerLink]="['/pages/update', page.id]">
                     <i class="fa fa-pencil"></i>
                   </a>

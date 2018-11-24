@@ -11,6 +11,7 @@ import {AuthGuardService} from './shared/service/auth-guard.service';
 import {SitesComponent} from './content/sites/sites.component';
 import {AddUpdateSiteComponent} from './content/sites/add-update-site/add-update-site.component';
 import {PagesComponent} from './content/pages/pages.component';
+import {AddUpdatePageComponent} from './content/pages/add-update-page/add-update-page.component';
 
 const routes: Routes = [
   // Main layout routes
@@ -49,6 +50,18 @@ const routes: Routes = [
         canActivate: [AuthGuardService],
         data: {breadCrumbs: BreadCrumbConfig.getBreadCrumbConfig(RouteType.PAGES), addUrl: '/pages/add', addText: 'BREADCRUMBS.pages.add'}
       },
+      {
+        path: 'pages/add',
+        component: AddUpdatePageComponent,
+        canActivate: [AuthGuardService],
+        data: {breadCrumbs: BreadCrumbConfig.getBreadCrumbConfig(RouteType.PAGES_ADD)}
+      },
+      {
+        path: 'sites/:siteId/pages/:id',
+        component: AddUpdatePageComponent,
+        canActivate: [AuthGuardService],
+        data: {breadCrumbs: BreadCrumbConfig.getBreadCrumbConfig(RouteType.PAGES_UPDATE)}
+      }
     ]
   },
 

@@ -53,7 +53,15 @@ export class MappingUtil {
     page.id = item.id;
     page.name = item.name;
     page.title = item.title;
-    page.description = item.description;
+
+    if (item.site) {
+      page.site = this.mapItemToSite(item.site);
+    }
+
+    if (item.parent) {
+      page.parent = this.mapItemToPage(item.parent);
+    }
+
     page.published = item.published;
     page.createdAt = new Date(item.createdAt);
     page.updatedAt = new Date(item.updatedAt);

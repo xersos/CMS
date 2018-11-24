@@ -17,7 +17,6 @@ public class Page {
     private String id;
     private String name;
     private String title;
-    private String description;
     private boolean published = false;
     private Page parent;
     private List<Page> children;

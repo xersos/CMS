@@ -18,7 +18,14 @@
       "username": "Username",
       "password": "Password",
       "name": "Name",
-      "path": "Path"
+      "path": "Path",
+      "title": "Title",
+      "site": "Site",
+      "parent": "Parent"
+    },
+    "PLACEHOLDER": {
+      "site": "Select a site",
+      "parent": "Select the parent page"
     },
     "ERROR": {
       "required": "This field is required",
@@ -35,6 +42,9 @@
       "SITE": {
         "name.not-unique": "There is already a site with this name",
         "path.not-unique": "There is already a site with this path"
+      },
+      "PAGE": {
+        "name.not-unique": "There is already a page with this name and parent."
       }
     }
   },
@@ -76,7 +86,13 @@
       "name": "Name",
       "published": "Published",
       "updated": "Last updated",
-      "actions": "Actions"
+      "actions": "Actions",
+      "ADD": {
+        "title": "Add page",
+        "submit.btn": "Add",
+        "cancel.btn": "Cancel",
+        "success": "Successfully added the page"
+      }
     }
   }
 }

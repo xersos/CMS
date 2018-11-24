@@ -1,6 +1,8 @@
 package be.zwaldeck.zcms.repository.rmdbs.service;
 
 import be.zwaldeck.zcms.repository.api.exception.BrakingRepositoryException;
+import be.zwaldeck.zcms.repository.api.exception.RepositoryError;
+import be.zwaldeck.zcms.repository.api.exception.RepositoryException;
 import be.zwaldeck.zcms.repository.api.model.Page;
 import be.zwaldeck.zcms.repository.api.model.Site;
 import be.zwaldeck.zcms.repository.api.service.PageService;
@@ -34,12 +36,18 @@ public class PageServiceRMDBS implements PageService {
 
     @Override
     public Optional<Page> getPageById(String id) {
-        return repository.findById(id).map(converter::fromDB);
+        return repository.findById(id).map(converter::fromDBWithChildren);
     }
 
     @Override
     public Page create(Page page) {
         // TODO create root Node for page
+
+        if (page.getParent() != null &&
+                page.getParent().getChildren().stream().anyMatch(child -> child.getName().equals(page.getName()))) {
+            throw new RepositoryException(RepositoryError.PAGE_NAME_NOT_UNIQUE);
+        }
+
         return converter.fromDB(repository.saveAndFlush(converter.toDB(page, false)));
     }
 
@@ -65,6 +73,12 @@ public class PageServiceRMDBS implements PageService {
                 .stream()
                 .map(converter::fromDB)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public org.springframework.data.domain.Page<Page> getPagesBySite(Site site, Pageable pageable) {
+        return repository.findBySite(siteConverter.toDB(site, true), pageable)
+                .map(converter::fromDB);
     }
 
     @Override

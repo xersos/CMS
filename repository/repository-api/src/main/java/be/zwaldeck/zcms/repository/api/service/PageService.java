@@ -27,4 +27,6 @@ public interface PageService {
                                                                        boolean includeParent, Pageable pageable);
 
     Page getRootPageForSite(Site site) throws BrakingRepositoryException;
+
+    org.springframework.data.domain.Page<Page> getPagesBySite(Site site, Pageable pageable);
 }

@@ -10,6 +10,7 @@ import {AlertModule, ModalModule} from 'ngx-bootstrap';
 import { PaginationComponent } from './comonent/pagination/pagination.component';
 import { FlashMessageComponent } from './comonent/flash-message/flash-message.component';
 import { ConfirmModalComponent } from './modal/confirm-modal/confirm-modal.component';
+import {NgxSelectModule} from 'ngx-select-ex';
 
 @NgModule({
   imports: [
@@ -35,6 +36,7 @@ import { ConfirmModalComponent } from './modal/confirm-modal/confirm-modal.compo
     // Common bootstrap modules
     AlertModule.forRoot(),
     ModalModule.forRoot(),
+    NgxSelectModule,
 
   ],
   declarations: [
@@ -51,6 +53,7 @@ import { ConfirmModalComponent } from './modal/confirm-modal/confirm-modal.compo
     // Common bootstrap modules
     AlertModule,
     ModalModule,
+    NgxSelectModule,
 
     PaginationComponent,
     FlashMessageComponent,

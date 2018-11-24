@@ -29,7 +29,6 @@ public class PageConverterRMDBS implements DBConverter<Page, PageDB> {
 
         db.setName(page.getName());
         db.setTitle(page.getTitle());
-        db.setDescription(page.getDescription());
         db.setPublished(page.isPublished());
 
         if (page.getParent() != null) {
@@ -48,7 +47,6 @@ public class PageConverterRMDBS implements DBConverter<Page, PageDB> {
         page.setId(pageDB.getId());
         page.setName(pageDB.getName());
         page.setTitle(pageDB.getTitle());
-        page.setDescription(pageDB.getDescription());
         page.setPublished(pageDB.isPublished());
 
         if (pageDB.getParent() != null) {

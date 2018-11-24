@@ -101,7 +101,7 @@ public class RMDBSConfig {
                 return "org.postgres.Driver";
             case MYSQL:
             default:
-                return "com.mysql.jdbc.Driver";
+                return "com.mysql.cj.jdbc.Driver";
         }
     }
 
