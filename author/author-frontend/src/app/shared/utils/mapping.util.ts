@@ -53,6 +53,7 @@ export class MappingUtil {
     page.id = item.id;
     page.name = item.name;
     page.title = item.title;
+    page.path = item.path;
 
     if (item.site) {
       page.site = this.mapItemToSite(item.site);

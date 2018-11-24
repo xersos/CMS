@@ -17,6 +17,7 @@ public class PageResponse {
     private String id;
     private String name;
     private String title;
+    private String path;
     private boolean published;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)

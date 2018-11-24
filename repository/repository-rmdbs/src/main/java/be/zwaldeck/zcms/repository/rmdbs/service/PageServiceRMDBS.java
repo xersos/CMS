@@ -10,6 +10,7 @@ import be.zwaldeck.zcms.repository.rmdbs.converter.PageConverterRMDBS;
 import be.zwaldeck.zcms.repository.rmdbs.converter.SiteConverterRMDBS;
 import be.zwaldeck.zcms.repository.rmdbs.domain.PageDB;
 import be.zwaldeck.zcms.repository.rmdbs.repository.PageRMDBSRepository;
+import be.zwaldeck.zcms.utils.UrlUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -47,6 +48,9 @@ public class PageServiceRMDBS implements PageService {
                 page.getParent().getChildren().stream().anyMatch(child -> child.getName().equals(page.getName()))) {
             throw new RepositoryException(RepositoryError.PAGE_NAME_NOT_UNIQUE);
         }
+
+        var basePath = page.getParent() != null ? UrlUtils.addTrailingSlash(page.getParent().getPath()) : "/";
+        page.setPath(UrlUtils.optimizeUrl(basePath + page.getName()));
 
         return converter.fromDB(repository.saveAndFlush(converter.toDB(page, false)));
     }

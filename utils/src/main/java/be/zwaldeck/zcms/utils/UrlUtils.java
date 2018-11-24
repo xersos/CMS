@@ -21,6 +21,14 @@ public final class UrlUtils {
         return url;
     }
 
+    public static String addTrailingSlash(String url) {
+        if (!url.endsWith("/")) {
+            return url + "/";
+        }
+
+        return url;
+    }
+
     public static String optimizeUrl(String url) {
         return removeTrailingSlash(addBeginningSlash(url));
     }

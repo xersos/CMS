@@ -154,7 +154,7 @@ export class AddUpdatePageComponent extends BaseComponent implements OnInit {
           for (const item of collection.items) {
             options.push({
               id: item.id,
-              text: item.name + ' - ' + item.title,
+              text: item.path + ' [' + item.title + ']',
               name: item.name
             });
           }
