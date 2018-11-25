@@ -154,10 +154,20 @@ export class AddUpdatePageComponent extends BaseComponent implements OnInit {
           for (const item of collection.items) {
             options.push({
               id: item.id,
-              text: item.path + ' [' + item.title + ']',
+              text: item.path,
               name: item.name
             });
           }
+
+          options.sort((a, b) => {
+            if (a.text < b.text) {
+              return -1;
+            }
+            if (a.text > b.text) {
+              return 1;
+            }
+            return 0;
+          });
 
           return options;
         })
