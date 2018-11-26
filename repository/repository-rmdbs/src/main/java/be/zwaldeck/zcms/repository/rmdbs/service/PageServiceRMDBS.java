@@ -44,6 +44,7 @@ public class PageServiceRMDBS implements PageService {
     public Page create(Page page) {
         // TODO create root Node for page
 
+        // TODO REFACTOR to something simpler
         if (page.getParent() != null &&
                 page.getParent().getChildren().stream().anyMatch(child -> child.getName().equals(page.getName()))) {
             throw new RepositoryException(RepositoryError.PAGE_NAME_NOT_UNIQUE);
@@ -57,8 +58,22 @@ public class PageServiceRMDBS implements PageService {
 
     @Override
     public Page update(Page oldPage, Page newPage) {
-        // TODO
-        return null;
+        newPage.setSite(oldPage.getSite());
+        newPage.setId(oldPage.getId());
+        newPage.setChildren(oldPage.getChildren());
+        newPage.setPublished(oldPage.isPublished());
+        newPage.setCreatedAt(oldPage.getCreatedAt());
+
+        // TODO REFACTOR to something simpler
+        if (newPage.getParent() != null && !newPage.getName().equals(oldPage.getName()) &&
+                newPage.getParent().getChildren().stream().anyMatch(child -> child.getName().equals(newPage.getName()))) {
+            throw new RepositoryException(RepositoryError.PAGE_NAME_NOT_UNIQUE);
+        }
+
+        var basePath = newPage.getParent() != null ? UrlUtils.addTrailingSlash(newPage.getParent().getPath()) : "/";
+        newPage.setPath(UrlUtils.optimizeUrl(basePath + newPage.getName()));
+
+        return converter.fromDB(repository.saveAndFlush(converter.toDB(newPage, true)));
     }
 
     @Override

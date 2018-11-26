@@ -35,7 +35,10 @@ public class PageJSONConverter {
 
     public PageResponse toJson(Page page) {
         var res = toJsonForDetail(page);
-        res.setParent(toJsonForDetail(page.getParent()));
+
+        if (page.getParent() != null) {
+            res.setParent(toJsonForDetail(page.getParent()));
+        }
 
         return res;
     }

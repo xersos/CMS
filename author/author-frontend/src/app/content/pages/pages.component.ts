@@ -20,8 +20,9 @@ export class PagesComponent extends BaseComponent implements OnInit {
   public error: string = null;
   public success: string = null;
 
+  public site: Site = null;
+
   private treeItem: TreeViewItem = null;
-  private site: Site = null;
 
   constructor(private pageService: PageService) {
     super();

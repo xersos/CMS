@@ -92,6 +92,12 @@
         "submit.btn": "Add",
         "cancel.btn": "Cancel",
         "success": "Successfully added the page"
+      },
+      "UPDATE": {
+        "title": "Update page",
+        "submit.btn": "Update",
+        "cancel.btn": "Cancel",
+        "success": "Successfully updated the page"
       }
     }
   }

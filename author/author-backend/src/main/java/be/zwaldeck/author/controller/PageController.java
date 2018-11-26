@@ -78,12 +78,24 @@ public class PageController {
         return new ResponseEntity<>(pageConverter.toJson(page), HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/pages/{id}", method = RequestMethod.POST)
-    public ResponseEntity<PageResponse> createPage(@PathVariable String siteId, @PathVariable String id) {
-        var site = getSiteById(siteId);
+    @RequestMapping(value = "/pages/{id}", method = RequestMethod.GET)
+    public ResponseEntity<PageResponse> getPageById(@PathVariable String siteId, @PathVariable String id) {
+        getSiteById(siteId);
         var page = getPageById(id);
 
         return new ResponseEntity<>(pageConverter.toJson(page), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/pages/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<PageResponse> createPage(@PathVariable String siteId, @PathVariable String id,
+                                                   @RequestBody @Valid PageRequest request) {
+        getSiteById(siteId);
+        var oldPage = getPageById(id);
+
+        var newPage = pageConverter.fromJson(request);
+        newPage = pageService.update(oldPage, newPage);
+
+        return new ResponseEntity<>(pageConverter.toJson(newPage), HttpStatus.OK);
     }
 
     private Site getSiteById(String id) {

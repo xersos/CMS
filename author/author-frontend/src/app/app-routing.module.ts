@@ -57,7 +57,7 @@ const routes: Routes = [
         data: {breadCrumbs: BreadCrumbConfig.getBreadCrumbConfig(RouteType.PAGES_ADD)}
       },
       {
-        path: 'sites/:siteId/pages/:id',
+        path: 'sites/:siteId/pages/:id/update',
         component: AddUpdatePageComponent,
         canActivate: [AuthGuardService],
         data: {breadCrumbs: BreadCrumbConfig.getBreadCrumbConfig(RouteType.PAGES_UPDATE)}

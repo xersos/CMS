@@ -125,7 +125,7 @@ export class AddUpdatePageComponent extends BaseComponent implements OnInit {
       this.error = null;
       const toExec: Observable<boolean> = this.page === null ?
         this.pageService.createSite(this.form.value) :
-        this.pageService.updateSite(this.page.id, this.form.value);
+        this.pageService.updateSite(this.site.id, this.page.id, this.form.value);
 
       this.loading();
       toExec.pipe(
@@ -225,6 +225,7 @@ export class AddUpdatePageComponent extends BaseComponent implements OnInit {
       // todo selection stuffies
 
       this.form.get('site').disable();
+      this.form.get('site').setValue(this.site.id);
       this.onSiteSelected(this.site.id);
     }
   }

@@ -43,7 +43,7 @@ export class PageService {
   }
 
   public getPageById(siteId: string, id: string): Observable<Page> {
-    return this.restService.get(`/sites/`, this.authService.getToken());
+    return this.restService.get(`/sites/${siteId}/pages/${id}`, this.authService.getToken());
   }
 
   public createSite(formData: any): Observable<boolean> {
@@ -63,17 +63,38 @@ export class PageService {
           if (error.error.key === 'page_name_not_unique') {
             EmitterService.of('pageError').emit('SERVICE.ERRORS.PAGE.name.not-unique');
           } else {
-            EmitterService.of('siteError').emit('COMMON.ERRORS.something.wrong');
+            EmitterService.of('pageError').emit('COMMON.ERRORS.something.wrong');
           }
         }
 
-        return of(null);
+        return of(false);
       })
     );
   }
 
-  public updateSite(pageId: string, formData: any): Observable<boolean> {
-    return of(true);
+  public updateSite(siteId: string, pageId: string, formData: any): Observable<boolean> {
+    const body = {
+      title: formData.title,
+      name: formData.name,
+      parent: formData.parent
+    };
+
+    return this.restService.put(`/sites/${siteId}/pages/${pageId}`, body, this.authService.getToken()).pipe(
+      map(res => true),
+      catchError((error: HttpErrorResponse) => {
+        if (error.error instanceof ErrorEvent) {
+          EmitterService.of('pageError').emit('COMMON.ERRORS.something.wrong');
+        } else {
+          if (error.error.key === 'page_name_not_unique') {
+            EmitterService.of('pageError').emit('SERVICE.ERRORS.PAGE.name.not-unique');
+          } else {
+            EmitterService.of('pageError').emit('COMMON.ERRORS.something.wrong');
+          }
+        }
+
+        return of(false);
+      })
+    );
   }
 
   private mapPageCollection(): OperatorFunction<any, PaginatedCollection> {
