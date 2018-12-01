@@ -17,6 +17,7 @@
 
     <modules>
         <module>core-common</module>
+        <module>core-piece</module>
     </modules>
 
     <build>

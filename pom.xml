@@ -52,6 +52,12 @@
                 <version>2.6</version>
             </dependency>
 
+            <dependency>
+                <groupId>org.reflections</groupId>
+                <artifactId>reflections</artifactId>
+                <version>0.9.11</version>
+            </dependency>
+
             <!-- Needed for Java 9+ -->
             <dependency>
                 <groupId>javax.xml.bind</groupId>
