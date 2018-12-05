@@ -1,5 +1,6 @@
 package be.zwaldeck.zcms.core.piece;
 
+import be.zwaldeck.zcms.piece.api.Piece;
 import be.zwaldeck.zcms.utils.reflection.ConstructorUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.reflections.Reflections;

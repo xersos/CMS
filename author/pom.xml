@@ -18,6 +18,8 @@
         <module>author-frontend</module>
     </modules>
 
+    <name>ZCMS / Author</name>
+
     <build>
         <plugins>
             <plugin>
