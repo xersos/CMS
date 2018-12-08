@@ -18,6 +18,7 @@
     <modules>
         <module>core-common</module>
         <module>core-piece</module>
+        <module>core-plugin</module>
     </modules>
 
     <build>

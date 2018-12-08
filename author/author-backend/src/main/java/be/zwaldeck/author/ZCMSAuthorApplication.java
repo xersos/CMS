@@ -2,6 +2,7 @@ package be.zwaldeck.author;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,10 +17,20 @@ public class ZCMSAuthorApplication {
 
     };
 
+    private static String[] args;
+    private static ConfigurableApplicationContext applicationContext;
+
     public static void main(String[] args) {
-        SpringApplication.run(ZCMSAuthorApplication.class, args);
+        ZCMSAuthorApplication.args = args;
+        applicationContext = SpringApplication.run(ZCMSAuthorApplication.class, args);
     }
 
+    public static void restart() {
+        applicationContext.close();
+        applicationContext = SpringApplication.run(ZCMSAuthorApplication.class, args);
+    }
+
+    // todo move to seperate config
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
