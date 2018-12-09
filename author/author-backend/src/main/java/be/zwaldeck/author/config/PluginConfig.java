@@ -11,6 +11,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
+import java.util.function.Consumer;
+
 @Import(ZcmsPluginConfig.class)
 @Configuration
 @Slf4j
@@ -25,9 +27,9 @@ public class PluginConfig {
         this.beanFactory = beanFactory;
     }
 
-    @Bean
-    public ZcmsPluginLoader pluginLoader() {
-        return new ZcmsPluginLoader(applicationContext, beanFactory, this::restartApplication);
+    @Bean(name = "restartConsumer")
+    public Consumer<String> restartConsumer() {
+        return this::restartApplication;
     }
 
     private void restartApplication(String reason) {
