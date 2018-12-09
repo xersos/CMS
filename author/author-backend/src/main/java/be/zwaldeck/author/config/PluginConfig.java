@@ -22,7 +22,6 @@ public class PluginConfig {
     @Autowired
     public PluginConfig(ApplicationContext applicationContext, AbstractAutowireCapableBeanFactory beanFactory) {
         this.applicationContext = applicationContext;
-
         this.beanFactory = beanFactory;
     }
 

@@ -8,4 +8,7 @@ export enum RouteType {
   PAGES,
   PAGES_ADD,
   PAGES_UPDATE,
+
+  PLUGINS,
+  PLUGINS_ADD,
 }

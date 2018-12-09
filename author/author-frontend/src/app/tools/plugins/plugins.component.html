@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-header">
+        {{ 'COMPONENT.PLUGINS.title' | translate }}
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-12">
+
+            <zcms-flash-message></zcms-flash-message>
+
+            <alert type="danger" [dismissible]="true" *ngIf="error">{{error | translate}}</alert>
+            <alert type="success" [dismissible]="true" *ngIf="success">{{success | translate}}</alert>
+
+            <table class="table table-responsive-sm table-striped table-bordered" *ngIf="plugins">
+              <thead>
+              <tr>
+                <th>{{ 'COMPONENT.PLUGINS.id' | translate}}</th>
+                <th>{{ 'COMPONENT.PLUGINS.state' | translate}}</th>
+                <th>{{ 'COMPONENT.PLUGINS.actions' | translate}}</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let plugin of plugins">
+                <td>{{plugin.id}}</td>
+                <td>{{plugin.state}}</td>
+                <td class="text-center">
+                  <a class="btn btn-success" *ngIf="plugin.state === 'STOPPED'" (click)="startPlugin(plugin)">
+                    <i class="fa fa-play"></i>
+                  </a>
+                  <a class="btn btn-warning" *ngIf="plugin.state === 'STARTED'" (click)="stopPlugin(plugin)">
+                   <i class="fa fa-stop"></i>
+                  </a>
+                  &nbsp;
+                  <a class="btn btn-danger" (click)="askForPluginDeletion(plugin)">
+                    <i class="fa fa-trash"></i>
+                  </a>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -5,6 +5,7 @@ import be.zwaldeck.zcms.core.plugin.exception.ZcmsPluginException;
 import be.zwaldeck.zcms.core.plugin.state.ZcmsPluginState;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.pf4j.PluginState;
 import org.pf4j.PluginWrapper;
@@ -34,6 +35,7 @@ public class ZcmsPluginLoader {
     private final Path stateJsonPath;
     private final ObjectMapper objectMapper;
 
+    @Getter
     private List<ZcmsPluginState> pluginStates = new ArrayList<>();
 
     public ZcmsPluginLoader(ApplicationContext applicationContext, AbstractAutowireCapableBeanFactory beanFactory,
@@ -88,8 +90,8 @@ public class ZcmsPluginLoader {
             throw new ZcmsPluginException(PluginError.PLUGIN_NOT_FOUND);
         }
 
-        if (pluginWrapper.getPluginState().equals(PluginState.STARTED)) {
-            log.info("Plugin '{}' already started.", pluginId);
+        if (pluginWrapper.getPluginState().equals(PluginState.STOPPED)) {
+            log.info("Plugin '{}' already stopped.", pluginId);
             return;
         }
 
@@ -114,6 +116,7 @@ public class ZcmsPluginLoader {
         pluginStates.stream()
                 .filter(state -> Arrays.asList(ZcmsPluginState.ALLOWED_PLUGIN_STATES).contains(state.getState().toUpperCase()))
                 .filter(state -> state.getState().equalsIgnoreCase("STARTED"))
+                .peek(state -> System.out.println(state.getState()))
                 .peek(state -> pluginManager.startPlugin(state.getId()))
                 .map(state -> pluginManager.getPlugin(state.getId()))
                 .forEach(this::registerBeansForPlugin);

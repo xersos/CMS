@@ -19,6 +19,10 @@ export class BreadCrumbConfig {
         return [item('BREADCRUMBS.pages', true, '/pages'), item('BREADCRUMBS.pages.add')];
       case RouteType.PAGES_UPDATE:
         return [item('BREADCRUMBS.pages', true, '/pages'), item('BREADCRUMBS.pages.update')];
+      case RouteType.PLUGINS:
+        return [item('BREADCRUMBS.plugins')];
+      case RouteType.PLUGINS_ADD:
+        return [item('BREADCRUMBS.plugins', true, '/plugins'), item('BREADCRUMBS.plugins.add')];
     }
 
     return [];

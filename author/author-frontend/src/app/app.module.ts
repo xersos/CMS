@@ -7,6 +7,7 @@ import {PagesModule} from './pages/pages.module';
 import {ContentModule} from './content/content.module';
 import {LayoutModule} from './layout/layout.module';
 import {AppRoutingModule} from './app-routing.module';
+import {ToolsModule} from './tools/tools.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import {AppRoutingModule} from './app-routing.module';
     LayoutModule,
     PagesModule,
     ContentModule,
+    ToolsModule,
 
     AppRoutingModule,
     BrowserModule

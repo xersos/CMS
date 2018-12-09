@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LeftSidebarComponent implements OnInit {
 
+  // TODO: Translations
   public readonly navItems = [
     {
       name: 'Dashboard',
@@ -31,13 +32,18 @@ export class LeftSidebarComponent implements OnInit {
       url: '/pages',
       icon: 'icon-doc'
     },
-    // {
-    //   divider: true
-    // },
-    // {
-    //   title: true,
-    //   name: 'Extras',
-    // },
+    {
+      divider: true
+    },
+    {
+      title: true,
+      name: 'Tools',
+    },
+    {
+      name: 'Plugins',
+      url: '/plugins',
+      icon: 'icon-puzzle'
+    },
     // {
     //   name: 'Pages',
     //   url: '/pages',

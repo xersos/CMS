@@ -12,6 +12,7 @@ import {SitesComponent} from './content/sites/sites.component';
 import {AddUpdateSiteComponent} from './content/sites/add-update-site/add-update-site.component';
 import {PagesComponent} from './content/pages/pages.component';
 import {AddUpdatePageComponent} from './content/pages/add-update-page/add-update-page.component';
+import {PluginsComponent} from './tools/plugins/plugins.component';
 
 const routes: Routes = [
   // Main layout routes
@@ -61,6 +62,13 @@ const routes: Routes = [
         component: AddUpdatePageComponent,
         canActivate: [AuthGuardService],
         data: {breadCrumbs: BreadCrumbConfig.getBreadCrumbConfig(RouteType.PAGES_UPDATE)}
+      },
+      {
+        path: 'plugins',
+        component: PluginsComponent,
+        canActivate: [AuthGuardService], // TODO: check roles
+        data: {breadCrumbs: BreadCrumbConfig.getBreadCrumbConfig(RouteType.PLUGINS),
+          addUrl: '/plugins/add', addText: 'BREADCRUMBS.plugins.add'}
       }
     ]
   },

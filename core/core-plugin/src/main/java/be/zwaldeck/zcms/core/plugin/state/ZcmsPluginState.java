@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ZcmsPluginState {
 
-    public static final String[] ALLOWED_PLUGIN_STATES = {"STARTED, STOPPED"};
+    public static final String[] ALLOWED_PLUGIN_STATES = {"STARTED", "STOPPED"};
 
     private String id;
     private String state;

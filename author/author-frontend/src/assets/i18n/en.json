@@ -6,7 +6,9 @@
     "sites.update": "Update Site",
     "pages": "Pages",
     "pages.add": "Create Page",
-    "pages.update": "Update Page"
+    "pages.update": "Update Page",
+    "plugins": "Plugins",
+    "plugins.add": "Install Plugin"
   },
   "COMMON": {
     "ERRORS": {

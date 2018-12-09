@@ -1,6 +1,7 @@
 import {Site} from '../models/entity/site';
 import {PaginatedCollection} from '../models/paginated.collection';
 import {Page} from '../models/entity/page';
+import {Plugin} from '../models/entity/plugin';
 
 export class MappingUtil {
 
@@ -68,5 +69,14 @@ export class MappingUtil {
     page.updatedAt = new Date(item.updatedAt);
 
     return page;
+  }
+
+  public static mapItemToPlugin(item: any): Plugin {
+    const plugin = new Plugin();
+
+    plugin.id = item.id;
+    plugin.state = item.state;
+
+    return plugin;
   }
 }
