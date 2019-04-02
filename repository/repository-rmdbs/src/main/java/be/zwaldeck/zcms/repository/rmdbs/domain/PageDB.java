@@ -39,6 +39,86 @@ public class PageDB {
     @JoinColumn(name = "parent_id", nullable = true)
     private PageDB parent;
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public boolean isPublished() {
+        return published;
+    }
+
+    public void setPublished(boolean published) {
+        this.published = published;
+    }
+
+    public PageDB getParent() {
+        return parent;
+    }
+
+    public void setParent(PageDB parent) {
+        this.parent = parent;
+    }
+
+    public List<PageDB> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<PageDB> children) {
+        this.children = children;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public SiteDB getSite() {
+        return site;
+    }
+
+    public void setSite(SiteDB site) {
+        this.site = site;
+    }
+
     @OneToMany(mappedBy = "parent")
     private List<PageDB> children;
 

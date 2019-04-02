@@ -9,6 +9,14 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class PieceConfig {
 
+    public Piece getPiece() {
+        return piece;
+    }
+
+    public Class getClazz() {
+        return clazz;
+    }
+
     @NonNull
     private final Piece piece;
 

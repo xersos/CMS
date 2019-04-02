@@ -36,6 +36,50 @@ public class StubServiceRMDBS implements StubService {
         this.pageService = pageService;
     }
 
+    public PasswordEncoder getPasswordEncoder() {
+        return passwordEncoder;
+    }
+
+    public SetupService getSetupService() {
+        return setupService;
+    }
+
+    public UserServiceRMDBS getUserService() {
+        return userService;
+    }
+
+    public SiteServiceRMDBS getSiteService() {
+        return siteService;
+    }
+
+    public PageServiceRMDBS getPageService() {
+        return pageService;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    public List<Site> getSites() {
+        return sites;
+    }
+
+    public void setSites(List<Site> sites) {
+        this.sites = sites;
+    }
+
+    public List<Page> getPages() {
+        return pages;
+    }
+
+    public void setPages(List<Page> pages) {
+        this.pages = pages;
+    }
+
     private List<User> users;
     private List<Site> sites;
     private List<Page> pages;

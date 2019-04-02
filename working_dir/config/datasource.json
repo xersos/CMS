@@ -1,0 +1,12 @@
+{
+	"databaseType": "MYSQL",
+	"host": "localhost",
+	"port": 3306,
+	"databaseName": "cms",
+	"useSSL": false,
+	"username": "phpmyadminuser",
+	"password": "Xersos95*/",
+	"packagesToScan": [
+		]
+	
+}
