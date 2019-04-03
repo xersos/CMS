@@ -15,6 +15,22 @@ import javax.validation.constraints.Pattern;
 @AllArgsConstructor
 public class SiteRequest {
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
     @NotBlank(message = "site.name.blank")
     @Length(min = 1, max = 255, message = "site.name.length")
     private String name;

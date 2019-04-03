@@ -9,7 +9,6 @@ import {TranslateService} from '@ngx-translate/core';
 import {Site} from '../../shared/models/entity/site';
 import {BsModalRef, BsModalService, ModalOptions} from 'ngx-bootstrap';
 import {ConfirmModalComponent} from '../../shared/modal/confirm-modal/confirm-modal.component';
-import {initialState} from 'ngx-bootstrap/timepicker/reducer/timepicker.reducer';
 
 @Component({
   selector: 'zcms-sites',

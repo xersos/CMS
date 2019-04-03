@@ -1,5 +1,5 @@
 <ol class="breadcrumb">
-  <li class="breadcrumb-item">Z-CMS</li>
+  <li class="breadcrumb-item">C-CMS</li>
   <li class="breadcrumb-item" [ngClass]="{active: last}" *ngFor="let breadCrumb of breadCrumb; let last = last">
     <span *ngIf="!breadCrumb.clickable || last">{{ breadCrumb.name | translate}}</span>
     <a *ngIf="breadCrumb.clickable && !last" [routerLink]="breadCrumb.uri">{{ breadCrumb.name | translate}}</a>

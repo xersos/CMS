@@ -62,7 +62,7 @@ public class SiteController {
 
     @RequestMapping(value = "/{id:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}}",
             method = RequestMethod.DELETE)
-    public ResponseEntity<Void> delteSite(@PathVariable String id) {
+    public ResponseEntity<Void> deleteSite(@PathVariable String id) {
         siteService.getSiteById(id).ifPresent(siteService::delete);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

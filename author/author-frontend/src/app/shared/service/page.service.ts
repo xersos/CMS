@@ -7,7 +7,6 @@ import {catchError, map} from 'rxjs/operators';
 import {MappingUtil} from '../utils/mapping.util';
 import {catchSomethingWrong} from '../utils/functions';
 import {Page} from '../models/entity/page';
-import {Site} from '../models/entity/site';
 import {HttpErrorResponse} from '@angular/common/http';
 import {EmitterService} from './emitterService';
 
@@ -94,6 +93,13 @@ export class PageService {
 
         return of(false);
       })
+    );
+  }
+
+  public deletePage(id: string): Observable<boolean> {
+    return this.restService.delete(`/page/${id}`, this.authService.getToken()).pipe(
+      map(res => true),
+      catchSomethingWrong('pageError', false)
     );
   }
 

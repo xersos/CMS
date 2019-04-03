@@ -17,6 +17,14 @@ public class Page {
     private String id;
     private String name;
     private String title;
+    private String path;
+    private boolean published = false;
+    private Page parent;
+    private List<Page> children;
+    private Site site;
+    //    private Node rootNode;
+    private Date createdAt;
+    private Date updatedAt;
 
     public String getId() {
         return id;
@@ -98,12 +106,5 @@ public class Page {
         this.updatedAt = updatedAt;
     }
 
-    private String path;
-    private boolean published = false;
-    private Page parent;
-    private List<Page> children;
-    private Site site;
-    //    private Node rootNode;
-    private Date createdAt;
-    private Date updatedAt;
+
 }

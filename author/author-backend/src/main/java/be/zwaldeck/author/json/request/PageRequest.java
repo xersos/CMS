@@ -19,6 +19,30 @@ public class PageRequest {
     @Length(min = 1, max = 255, message = "page.title.length")
     private String title;
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getParent() {
+        return parent;
+    }
+
+    public void setParent(String parent) {
+        this.parent = parent;
+    }
+
     @NotBlank(message = "page.name.blank")
     @Pattern(regexp = "^[a-zA-Z0-9-_=+]*$", message = "page.name.invalid")
     @Length(min = 1, max = 255, message = "page.name.length")

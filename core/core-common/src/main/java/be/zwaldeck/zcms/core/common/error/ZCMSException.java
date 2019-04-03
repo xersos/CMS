@@ -6,6 +6,14 @@ import lombok.Getter;
 @Getter
 public class ZCMSException extends RuntimeException {
 
+    public ZCMSError getError() {
+        return error;
+    }
+
+    public void setError(ZCMSError error) {
+        this.error = error;
+    }
+
     private ZCMSError error;
 
     public ZCMSException(ZCMSError error) {
